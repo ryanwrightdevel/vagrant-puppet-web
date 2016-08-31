@@ -16,10 +16,10 @@ class appdev::composer{
   }
 
   exec{'create composer.phar':
-      command => 'php installer',
+      command => '/usr/bin/php installer',
       cwd => '/opt/composer',
       require => Wget::Fetch['https://getcomposer.org/installer'],
-      path => ['/usr/bin']
+      environment => ["COMPOSER_HOME=~/.composer"],
   }
 
   exec{'mv composer.phar':
